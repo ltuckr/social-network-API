@@ -1,4 +1,4 @@
-const {Thought, Reaction} = require('../models');
+const {Thought, Reaction} = require('../models').default;
 
 const ReactionController = {
     // add reaction to thought
@@ -8,7 +8,7 @@ const ReactionController = {
         .then(({_id}) => {
             return Thought.findOneAndUpdate(
                 {_id: params.thoughtId},
-                {$push: {reactions: _id}}
+                {$push: {reactions: _id}},
                 {new: true}
             );
         })

@@ -1,6 +1,4 @@
-const { Thought } = require('../models');
-
-Const (Thought, User) = require('../models');
+const { Thought, User } = require('../models').default;
 
 const thoughtController = {
     // get all thoughts

@@ -1,5 +1,5 @@
 {
-    "name": "social-network-API",
+    "name": "social-network",
     "version": "1.0.1",
     "description": "Social media API with Mongoose",
     "main": "server.js",
@@ -7,16 +7,15 @@
     "scripts": {
       "start": "node server.js",
       "seed": "node utils/seed",
-      "heroku-postbuild": "node utils/seed.js"
+      "heroku": "node utils/seed.js"
     },
     "dependencies": {
       "express": "^4.17.1",
       "mongoose": "^7.0.2"
-    },
-    "dependencies": {
-        "express": "^4.17.3",
-        "mongoose": "^6.2.9"
-      }
+
+    }
+
+    }
   
-  }
+  
   

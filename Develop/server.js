@@ -1,14 +1,14 @@
-// server.js
 const express = require('express');
-const db = require('./db');
-const routes = require('./routes');
+const apiRoutes = require('./api'); 
+
+const db = require('./config/connection');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
-app.use('/api', routes);
+app.use('/api', apiRoutes); 
 
 // Start the server
 db.once('open', () => {
