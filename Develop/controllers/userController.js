@@ -1,4 +1,5 @@
-const { User } = require("../models").default
+const { User } = require('../models'); 
+
 
 const userController = {
     // get all users

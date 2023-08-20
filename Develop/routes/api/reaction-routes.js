@@ -6,7 +6,7 @@ const {
     createReaction,
     updateReaction,
     deleteReaction,
-} = require('../../controllers/reaction-controller');
+} = require('../../controllers/reactionController');
 
 // get all reactions, create reaction
 router.route('/').get(getAllReactions).post(createReaction);
