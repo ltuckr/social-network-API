@@ -1,5 +1,8 @@
-import User from './User';
-import Thought from './Thought';
-import Reaction from './Reaction';
+const models = require('./models');
 
-export default { User, Thought, Reaction };
+const User = models.User;
+const Thought = models.Thought;
+const Reaction = models.Reaction;
+
+//destructure to get the models directly
+const { User, Thought, Reaction } = require('./models');
