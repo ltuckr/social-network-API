@@ -5,7 +5,7 @@ mongoose.connect(
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // Remove the deprecated options
+  
   }
 );
 

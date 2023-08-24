@@ -22,6 +22,13 @@ const UserSchema = new Schema(
             }
         ],
 
+        reactions: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Reaction'
+            }
+        ],
+
         friends: [
             {
                 type: Schema.Types.ObjectId,
