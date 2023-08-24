@@ -1,51 +1,53 @@
-const {Thought, Reaction} = require('../models').default;
+const { Reaction } = require('../models');
 
 const ReactionController = {
-    // add reaction to thought
-    addReaction({params, body}, res) {
-        console.log(body);
-        Reaction.create(body)
-        .then(({_id}) => {
-            return Thought.findOneAndUpdate(
-                {_id: params.thoughtId},
-                {$push: {reactions: _id}},
-                {new: true}
-            );
-        })
-        .then(dbThoughtData => {
-            if (!dbThoughtData) {
-                res.status(404).json({message: 'No thought found with this id!'});
-                return;
-            }
-            res.json(dbThoughtData);
-        }
-        )
-        .catch(err => res.json(err));
+    getAllReactions: (req, res) => {
+        // Implementation to get all reactions
     },
 
-    // remove reaction
-    removeReaction({params}, res) {
-        Reaction.findOneAndDelete({_id: params.reactionId})
+    getReactionById: (req, res) => {
+        // Implementation to get a specific reaction by ID
+    },
+
+    createReaction: (req, res) => {
+        const { body } = req;
+        console.log("Inside createReaction");
+        console.log("Request Body:", body);
+
+        Reaction.create(body)
+        .then(newReaction => {
+            console.log("New Reaction:", newReaction);
+            console.log("Reaction added successfully!");
+            res.json(newReaction);
+        })
+        .catch(err => {
+            console.error("Error:", err);
+            res.status(500).json(err);
+        });
+    },
+
+    updateReaction: (req, res) => {
+        // Implementation to update a reaction by ID
+    },
+
+    deleteReaction: (req, res) => {
+        const { reactionId } = req.params;
+        console.log("Inside deleteReaction");
+
+        Reaction.findOneAndDelete({ _id: reactionId })
         .then(deletedReaction => {
+            console.log("Deleted Reaction:", deletedReaction);
             if (!deletedReaction) {
-                return res.status(404).json({message: 'No reaction found with this id!'});
+                console.log("No reaction found with this id!");
+                return res.status(404).json({ message: 'No reaction found with this id!' });
             }
-            return Thought.findOneAndUpdate(
-                {_id: params.thoughtId},
-                {$pull: {reactions: params.reactionId}},
-                {new: true}
-            );
-        }
-        )
-        .then(dbThoughtData => {
-            if (!dbThoughtData) {
-                res.status(404).json({message: 'No thought found with this id!'});
-                return;
-            }
-            res.json(dbThoughtData);
-        }
-        )
-        .catch(err => res.json(err));
+            console.log("Reaction removed successfully!");
+            res.json(deletedReaction);
+        })
+        .catch(err => {
+            console.error("Error:", err);
+            res.status(500).json(err);
+        });
     }
 };
 
