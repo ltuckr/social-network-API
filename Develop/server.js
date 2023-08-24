@@ -1,5 +1,5 @@
 const express = require('express');
-const apiRoutes = require('./routes/api'); // Adjust the path
+const apiRoutes = require('./routes/api'); 
 
 const db = require('./config/connection');
 
