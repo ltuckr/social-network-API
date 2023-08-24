@@ -8,12 +8,10 @@ A social network API created with MongoDB, Mongoose and Express.js
 ## Installation and usage
 Run `npm i` to install your packages and dependencies, then `npm start`
 
-## Screenshot
+## Video
+https://drive.google.com/file/d/185b79ZtXTFrdhrwu2mZqwmQeoDNghta7/view
 
-
-
-
-# credits
+## Credits
 - https://www.mongodb.com/
 - https://mongoosejs.com/
 - https://insomnia.rest/
