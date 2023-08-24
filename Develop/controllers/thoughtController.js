@@ -1,4 +1,4 @@
-const { Thought, User } = require('../models');
+const { Thought} = require('../models');
 
 const thoughtController = {
     // get all thoughts
@@ -9,7 +9,7 @@ const thoughtController = {
             select: '-__v'
         })
         .select('-__v')
-        // .sort({ _id: -1 })
+        .sort({ _id: -1 })
         .then(dbThoughtData => res.json(dbThoughtData))
         .catch(err => {
             console.log(err);
@@ -25,7 +25,7 @@ const thoughtController = {
             select: '-__v'
         })
         .select('-__v')
-        // .sort({ _id: -1 })
+        .sort({ _id: -1 })
         .then(dbThoughtData => {
             // if no thought is found, send 404
             if (!dbThoughtData) {
@@ -71,6 +71,34 @@ const thoughtController = {
             }
             res.json(dbThoughtData);
         })          
+        .catch(err => res.json(err));
+    },
+
+    // add reaction
+    addReaction({params, body}, res) {
+        Thought.findOneAndUpdate(
+            {_id: params.thoughtId},
+            {$push: {reactions: body}},
+            {new: true}
+        )
+        .then(dbThoughtData => {
+            if (!dbThoughtData) {
+                res.status(404).json({message: 'Oops! No thought found with this id.'});
+                return;
+            }
+            res.json(dbThoughtData);
+        })          
+        .catch(err => res.json(err));
+    },
+
+    // delete reaction
+    removeReaction({params}, res) {
+        Thought.findOneAndUpdate(
+            {_id: params.thoughtId},
+            {$pull: {reactions: {reactionId: params.reactionId}}},
+            {new: true}
+        )
+        .then(dbThoughtData => res.json(dbThoughtData))
         .catch(err => res.json(err));
     }
 };
